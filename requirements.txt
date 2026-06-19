@@ -6,4 +6,6 @@ scipy
 statsmodels
 scikit-learn
 torch
+ipython
 jupyter
+notebook
