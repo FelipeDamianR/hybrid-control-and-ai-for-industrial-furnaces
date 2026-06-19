@@ -1,0 +1,27 @@
+{
+  "dataset": "datos/dataset_horno_sostenimiento2_CORREGIDO.csv",
+  "resample": "5min",
+  "glitch_threshold": 5.0,
+  "features": [
+    "sensor_temp_main", "sensor_temp_backup", "setpoint", "heater_power_pct",
+    "electrical_current", "electrical_voltage", "aluminum_level_pct",
+    "ambient_temp", "energy_consumption_kwh", "lid_open_pct", "production_draw_rate"
+  ],
+  "inputs": ["heater_power_pct", "lid_open_pct", "production_draw_rate", "ambient_temp"],
+  "target": "sensor_temp_main",
+  "window": 12,
+  "latent": 8,
+  "hidden": 32,
+  "epochs": 15,
+  "lr": 0.001,
+  "batch_size": 128,
+  "seed": 42,
+  "train_frac": 0.70,
+  "val_frac": 0.85,
+  "dt_segundos": 300,
+  "ridge_lambdas": [0, 1, 10, 50, 100],
+  "horizontes": [3, 6, 12, 36, 72, 288],
+  "checkpoint": "salidas/autoencoder_baseline.pt",
+  "modelo_dmdc": "salidas/dmdc_normal.npz",
+  "figuras": "salidas/figuras"
+}
