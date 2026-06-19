@@ -1,35 +1,61 @@
-# Reto MA2008B para Ronal Group
+# Hybrid Control and AI for Industrial Furnaces
 
-## Introducción
+This repository contains the work developed for an industrial challenge proposed by RONAL Group. The goal of the project was to model the temperature dynamics of an aluminum holding furnace and compare a physics-based approach with a data-driven approach based on artificial intelligence.
 
-Este proyecto busca modelar la dinámica de horno de sostenimiento de aluminio, con un autoencoder LSTM y la identificación del espacio de estados por medio de DMDc del espacio latente, con el fin de comprarlo con un modelo creado por teoría de control moderno.
+The project combines concepts from modern control theory, system identification, machine learning, and industrial process analysis.
 
-## Requisitos e instalación
+## Project Description
 
-Se recomienda utilizar python 3.12, para instalar las librerías utilicé el siguiente comando:
+Two different modeling approaches were developed and compared.
 
-```bash
-pip install -r requirements.txt
-```
-Se recomienda crear un entorno virtual, ya sea directamente con `pip` o con `uv`.
+The first approach uses modern control theory to obtain a mathematical representation of the furnace through transfer functions, state-space models, controller design, and state observers.
 
-## Estandares de desarrollo
+The second approach uses process data to learn the furnace dynamics through an LSTM Autoencoder and Dynamic Mode Decomposition with Control (DMDc). The objective was to determine whether latent representations obtained from machine learning could reproduce the behavior of the physical system.
 
-### Sistema
+## Industrial Context
 
-Este proyecto fue desarrollado usando software y hardware de Apple, especificame, se utilizó una Macbook Pro, con un chip M1 Pro, 16 GB de ram unificada. Esta base hace que `torch` no este preparado para funcionar en otros dispositivos directamente. Se recomienda ajustar el codígo para las secciones especificamente de entrenamiento de modelo y utilización del mismo.
+Aluminum holding furnaces are used to maintain molten aluminum at the desired operating temperature before manufacturing processes. These systems are affected by several disturbances, including heat losses, extraction of material, process delays, and thermal inertia.
 
-Actualmente el proyecto esta configurado para ejecutar el modelo directamente sobre el CPU, lo cual dada la densidad de los datos, no es recomendable en muchas maquinas. 
+Understanding these dynamics is important for process monitoring, forecasting, and future control applications.
 
-### Reproducibilidad
+## Methodology
 
-Este sistema es reproducible y permite correr el pipeline desde 0 con los mismos resultados siempre ya que se configuro la semilla base con el numero `42`. (Nota: Modificar el tipo de ejecución de CPU a GPU puede alterar los resultados incluso con la misma semilla).
+### Control Model
 
-### Parametros
+The control-based approach includes:
 
-Toda la paremetrización existe en un archivo `config.json`.
+- Transfer function modeling
+- Delay approximation using Padé approximation
+- State-space representation
+- Pole placement controller design
+- State observer design
+- Simulink implementation
+- System response analysis
 
-### Salidas
+### Artificial Intelligence Model
 
-Todas las salidas generadas por los scripts se pueden encontrar en la ruta: `salidas/`
+The data-driven approach includes:
+
+- Exploratory Data Analysis (EDA)
+- Data preprocessing
+- Correlation analysis
+- Principal Component Analysis (PCA)
+- LSTM Autoencoder
+- Latent state extraction
+- Dynamic Mode Decomposition with Control (DMDc)
+- State-space identification from latent variables
+
+## Repository Structure
+
+```text
+datos/          Dataset files
+notebooks/      Exploratory analysis and experiments
+src/            Python source code
+simulink/       Simulink models and MATLAB files
+salidas/        Generated results and figures
+
+README.md
+requirements.txt
+config.json
+LICENSE
 
